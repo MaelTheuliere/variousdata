@@ -1,0 +1,5 @@
+^extdata$
+^sysdata$
+^data-raw$
+^\.Rproj\.user$
+^variousdata\.Rproj$
