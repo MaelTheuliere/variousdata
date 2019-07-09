@@ -16,8 +16,9 @@ dvf_2017<-vroom(file = "extdata/valeursfoncieres-2017.txt",delim = "|",locale = 
                 )) %>%
   set_standard_names()
 
-dvf_r52 <- bind_rows(dvf_2014,dvf_2017) %>%
-  mutate(DEPCOM=paste0(code_departement,code_commune) %>% as.factor) %>%
+dvf_r52 <- bind_rows(dvf_2014,dvf_2017) %>% 
+  mutate(code_commune=str_pad(string = code_commune, width = 3, pad = "0"),
+         DEPCOM=paste0(code_departement,code_commune) %>% as.factor) %>%
   passer_au_cog_a_jour(garder_info_supra = F,aggrege = F) %>%
   filter(str_sub(DEPCOM,1,2) %in% c("44","49","53","72","85"))
 
